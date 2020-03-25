@@ -27,7 +27,11 @@ Route::middleware(['auth:api'])->get('/user', function (Request $request){
 
 Route::post('register', 'UserController@register');
     Route::post('login', 'UserController@login');
-    Route::get('iklan', 'IklanController@Iklan');
 
-    Route::get('iklanall', 'IklanController@IklanAuth')->middleware('jwt.verify'); 
-    Route::get('user', 'UserController@getAuthenticatedUser')->middleware('jwt.verify'); 
+    Route::get('/barang', 'BarangController@index');
+    Route::get('/barang/{id}', 'BarangController@show')->middleware('jwt.verify'); 
+    Route::post('/barang', 'BarangController@store')->middleware('jwt.verify'); 
+    Route::put('/barang/{id}', 'BarangController@update')->middleware('jwt.verify'); 
+    Route::delete('/barang/{id}', 'BarangController@destroy')->middleware('jwt.verify'); 
+
+
